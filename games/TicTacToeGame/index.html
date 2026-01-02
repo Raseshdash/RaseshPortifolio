@@ -59,6 +59,18 @@
         .back {
           background: #38bdf8;
         }
+        .cell.win {
+  background: #22c55e !important;
+  color: #000;
+  box-shadow: 0 0 15px #22c55e;
+  animation: pulse 0.8s infinite alternate;
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+
     </style>
 </head>
 
@@ -76,6 +88,7 @@
 </div>
 
 <script>
+    let winningCells = [];
     const boardEl = document.getElementById("board");
     const statusEl = document.getElementById("status");
 
@@ -88,16 +101,22 @@
       [0,4,8],[2,4,6]
     ];
 
-    function render() {
-      boardEl.innerHTML = "";
-      board.forEach((val, i) => {
-        const cell = document.createElement("div");
-        cell.className = "cell";
-        cell.textContent = val;
-        cell.onclick = () => playerMove(i);
-        boardEl.appendChild(cell);
-      });
+  function render() {
+  boardEl.innerHTML = "";
+  board.forEach((val, i) => {
+    const cell = document.createElement("div");
+    cell.className = "cell";
+    cell.textContent = val;
+
+    if (winningCells.includes(i)) {
+      cell.classList.add("win");
     }
+
+    cell.onclick = () => playerMove(i);
+    boardEl.appendChild(cell);
+  });
+}
+
 
     function playerMove(i) {
       if (board[i] || gameOver) return;
@@ -137,27 +156,34 @@
       return empty[Math.floor(Math.random() * empty.length)];
     }
 
-    function checkResult(player) {
-      if (wins.some(w => w.every(i => board[i] === player))) {
-        statusEl.textContent = `🎉 ${player} wins!`;
-        gameOver = true;
-        return true;
-      }
-
-      if (board.every(v => v)) {
-        statusEl.textContent = "🤝 Draw!";
-        gameOver = true;
-        return true;
-      }
-      return false;
-    }
-
-    function resetGame() {
-      board.fill("");
-      gameOver = false;
-      statusEl.textContent = "";
+  function checkResult(player) {
+  for (let combo of wins) {
+    if (combo.every(i => board[i] === player)) {
+      statusEl.textContent = `🎉 ${player} wins!`;
+      winningCells = combo;
+      gameOver = true;
       render();
+      return true;
     }
+  }
+
+  if (board.every(v => v)) {
+    statusEl.textContent = "🤝 Draw!";
+    gameOver = true;
+    return true;
+  }
+  return false;
+}
+
+
+  function resetGame() {
+  board.fill("");
+  winningCells = [];
+  gameOver = false;
+  statusEl.textContent = "";
+  render();
+}
+
 
     function goBack() {
       window.location.href = "../../";
