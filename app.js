@@ -508,6 +508,39 @@ function loadSection(section, el) {
           initContactForm();
               setTimeout(reloadWeb3Forms, 100);
           break;
+case "games":
+  content.innerHTML = `
+    <div class="card games-section">
+      <h2>🎮 Mini Games</h2>
+      <p class="subtitle">Fun projects built with pure JavaScript</p>
+
+      <div class="game-grid">
+
+        <div class="game-card" onclick="openGame('games/guessGame/')">
+          <div class="game-icon">🎯</div>
+          <h3>Number Guess</h3>
+          <p>Guess the correct number within range</p>
+          <span class="play-btn">Play Game →</span>
+        </div>
+
+        <div class="game-card" onclick="openGame('games/TicTacToeGame/')">
+          <div class="game-icon">❌⭕</div>
+          <h3>Tic Tac Toe</h3>
+          <p>Classic 2-player strategy game</p>
+          <span class="play-btn">Play Game →</span>
+        </div>
+
+        <div class="game-card" onclick="openGame('games/RockPaperScissors/')">
+          <div class="game-icon">✊✋✌</div>
+          <h3>Rock Paper Scissors</h3>
+          <p>Play against computer AI</p>
+          <span class="play-btn">Play Game →</span>
+        </div>
+
+      </div>
+    </div>
+  `;
+  break;
 
            case "why":
                content.innerHTML = `
@@ -621,6 +654,11 @@ document.addEventListener('keydown', (e) => {
             break;
     }
 });
+
+function openGame(path) {
+  window.open(path, "_blank");
+}
+
 function animateSkills() {
     const bars = document.querySelectorAll('.skill-progress');
 

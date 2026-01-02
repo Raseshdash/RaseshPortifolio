@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Rock Paper Scissors</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background: #020617;
+          color: #fff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
+        .card {
+          text-align: center;
+          background: #111827;
+          padding: 25px;
+          border-radius: 12px;
+        }
+        button {
+          margin: 5px;
+          padding: 10px 15px;
+          font-size: 1rem;
+          cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>✊✋✌ Rock Paper Scissors</h2>
+
+    <button onclick="play('Rock')">✊ Rock</button>
+    <button onclick="play('Paper')">✋ Paper</button>
+    <button onclick="play('Scissors')">✌ Scissors</button>
+
+    <p id="result"></p>
+
+    <button onclick="goBack()">⬅ Back to Portfolio</button>
+</div>
+
+<script>
+    const choices = ["Rock", "Paper", "Scissors"];
+
+    function play(user) {
+      const cpu = choices[Math.floor(Math.random() * 3)];
+      let result = "";
+
+      if (user === cpu) result = "🤝 Draw";
+      else if (
+        (user === "Rock" && cpu === "Scissors") ||
+        (user === "Paper" && cpu === "Rock") ||
+        (user === "Scissors" && cpu === "Paper")
+      ) result = "✅ You Win!";
+      else result = "❌ You Lose";
+
+      document.getElementById("result").textContent =
+        `You: ${user} | CPU: ${cpu} → ${result}`;
+    }
+
+    function goBack() {
+      window.location.href = "../../";
+    }
+</script>
+
+</body>
+</html>

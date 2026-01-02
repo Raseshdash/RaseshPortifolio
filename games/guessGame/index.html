@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Number Guess Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background: #0f172a;
+          color: #fff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
+
+        .card {
+          background: #111827;
+          padding: 25px;
+          border-radius: 14px;
+          width: 320px;
+          text-align: center;
+          box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+
+        input {
+          width: 100%;
+          padding: 10px;
+          margin: 12px 0;
+          border-radius: 6px;
+          border: none;
+          font-size: 16px;
+        }
+
+        button {
+          padding: 10px 15px;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          background: #22c55e;
+          color: #000;
+          font-weight: bold;
+          margin-top: 8px;
+        }
+
+        button:hover {
+          opacity: 0.9;
+        }
+
+        .back {
+          margin-top: 12px;
+          background: #38bdf8;
+        }
+
+        .reset {
+          background: #f97316;
+          margin-left: 6px;
+        }
+
+        #result {
+          margin-top: 12px;
+          min-height: 24px;
+        }
+
+        .stats {
+          margin-top: 10px;
+          font-size: 0.9rem;
+          opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>🎯 Number Guess Game</h2>
+    <p>Guess a number between <b>1 & 10</b></p>
+
+    <input type="number" id="guess" min="1" max="10" placeholder="Enter number" />
+
+    <button onclick="check()">Check</button>
+    <button class="reset" onclick="resetGame()">Reset</button>
+
+    <p id="result"></p>
+
+    <div class="stats">
+        Attempts: <span id="attempts">0</span><br>
+        Best Score: <span id="best">-</span>
+    </div>
+
+    <button class="back" onclick="goBack()">⬅ Back to Portfolio</button>
+</div>
+
+<script>
+    let number;
+    let attempts = 0;
+
+    const bestScore = localStorage.getItem("bestGuessScore");
+    document.getElementById("best").textContent = bestScore ?? "-";
+
+    startGame();
+
+    function startGame() {
+      number = Math.floor(Math.random() * 10) + 1;
+      attempts = 0;
+      document.getElementById("attempts").textContent = 0;
+      document.getElementById("result").textContent = "";
+      document.getElementById("guess").value = "";
+    }
+
+    function check() {
+      const input = document.getElementById("guess");
+      const guess = Number(input.value);
+      const result = document.getElementById("result");
+
+      if (!guess || guess < 1 || guess > 10) {
+        result.textContent = "⚠ Enter a number between 1 and 10";
+        return;
+      }
+
+      attempts++;
+      document.getElementById("attempts").textContent = attempts;
+
+      const diff = Math.abs(guess - number);
+
+      if (guess === number) {
+        result.textContent = `🎉 Correct! You guessed in ${attempts} attempts`;
+
+        if (!bestScore || attempts < bestScore) {
+          localStorage.setItem("bestGuessScore", attempts);
+          document.getElementById("best").textContent = attempts;
+        }
+      }
+      else if (diff === 1) {
+        result.textContent = "🔥 Very close!";
+      }
+      else if (diff <= 3) {
+        result.textContent = "😊 Near!";
+      }
+      else {
+        result.textContent = "❄ Very far!";
+      }
+    }
+
+    function resetGame() {
+      startGame();
+    }
+
+    function goBack() {
+      window.location.href = "../../";
+    }
+</script>
+
+</body>
+</html>
