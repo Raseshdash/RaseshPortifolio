@@ -1,4 +1,6 @@
 const content = document.getElementById("content");
+const experienceYears = new Date().getFullYear() - 2023;
+
 const galleryData = [
 
     { title: "Nature", category: "nature", img: "assets/gallery/nature1.jfif" },
@@ -171,7 +173,7 @@ function loadSection(section, el) {
 
          <div class="quick-stats">
            <div>
-             <span>3+</span>
+<span>${experienceYears}+</span>
              <small>Years Experience</small>
            </div>
            <div>
@@ -210,6 +212,26 @@ function loadSection(section, el) {
            I regularly work on live production issues, taking ownership
            of critical fixes under tight SLAs.
          </p>
+         <h3 class="section-title">Currently Exploring</h3>
+         <div class="tag-group">
+           <span>System Design</span>
+           <span>Spring Microservices</span>
+           <span>Docker</span>
+           <span>Cloud Basics</span>
+           <span>Clean Architecture</span>
+         </div>
+<h3 class="section-title">Career Focus</h3>
+<p>
+  I am currently focused on <b>backend-heavy roles</b> in the telecom or product
+  domain, where I can contribute to large-scale systems and continue
+  growing as a software engineer.
+</p>
+
+<h3 class="section-title">Beyond Work</h3>
+<p>
+  Outside of work, I enjoy exploring new places, photography,
+  and continuously learning new technologies through hands-on projects.
+</p>
 
 
          <!-- SKILLS -->
@@ -455,7 +477,7 @@ function loadSection(section, el) {
                   <h3>Send me a message</h3>
 
                   <form id="contact-form" style="max-width:500px">
-                      <input type="hidden" name="access_key" value="6e977eca-1c4d-47dd-b82a-d3e5144b6558">
+                      <input type="hidden" name="access_key" value="b4f59c83-d815-442a-827b-2f9cdd9298c9">
 
                       <div style="margin-bottom:12px">
                           <input type="text" name="name" placeholder="Your Name" required class="form-input">
@@ -471,6 +493,7 @@ function loadSection(section, el) {
                       <div style="margin-bottom:12px">
                           <textarea name="message" rows="4" placeholder="Your Message" required class="form-input"></textarea>
                       </div>
+   <div class="h-captcha" data-captcha="true"></div>
 
                       <!-- Anti-spam -->
                       <input type="checkbox" name="botcheck" style="display:none">
@@ -483,6 +506,7 @@ function loadSection(section, el) {
           `;
 
           initContactForm();
+              setTimeout(reloadWeb3Forms, 100);
           break;
 
            case "why":
@@ -619,6 +643,17 @@ async function initContactForm() {
         status.textContent = "Sending...";
         status.style.opacity = "0.8";
 
+        // ✅ hCaptcha validation
+        const hCaptcha = form.querySelector(
+            'textarea[name="h-captcha-response"]'
+        )?.value;
+
+        if (!hCaptcha) {
+            status.textContent = "❌ Please verify the captcha.";
+            status.style.color = "red";
+            return;
+        }
+
         const formData = new FormData(form);
 
         try {
@@ -634,7 +669,7 @@ async function initContactForm() {
                 status.style.color = "var(--accent)";
                 form.reset();
             } else {
-                status.textContent = "❌ Something went wrong. Try again.";
+                status.textContent = "❌ Submission failed.";
                 status.style.color = "red";
             }
         } catch (error) {
@@ -643,6 +678,7 @@ async function initContactForm() {
         }
     });
 }
+
 function renderGallery(category) {
     const grid = document.getElementById("galleryGrid");
     grid.innerHTML = "";
@@ -682,20 +718,27 @@ let slideTimer = null;
 
 
 function openSlideshow(imageSrc) {
+    slideIndex = galleryData.findIndex(i => i.img === imageSrc);
+
     const modal = document.createElement("div");
     modal.className = "image-modal";
     modal.innerHTML = `
         <span class="close-btn">&times;</span>
+        <button class="nav prev">‹</button>
         <img id="slideImage" src="${imageSrc}">
+        <button class="nav next">›</button>
     `;
 
-    modal.querySelector(".close-btn").onclick = () => {
-        clearInterval(slideTimer);
-        modal.remove();
+    modal.querySelector(".close-btn").onclick = () => modal.remove();
+    modal.querySelector(".next").onclick = nextSlide;
+    modal.querySelector(".prev").onclick = () => {
+        slideIndex = (slideIndex - 1 + galleryData.length) % galleryData.length;
+        showSlide();
     };
 
     document.body.appendChild(modal);
 }
+
 function initLazyLoading() {
     const imgs = document.querySelectorAll(".lazy-img");
 
@@ -722,4 +765,17 @@ function showSlide() {
 function nextSlide() {
     slideIndex = (slideIndex + 1) % galleryData.length;
     showSlide();
+}
+
+function reloadWeb3Forms() {
+    // Remove existing script if any
+    const oldScript = document.querySelector('script[src*="web3forms.com"]');
+    if (oldScript) oldScript.remove();
+
+    // Inject again
+    const script = document.createElement("script");
+    script.src = "https://web3forms.com/client/script.js";
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
 }
