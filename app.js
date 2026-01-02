@@ -59,151 +59,205 @@ function loadSection(section, el) {
     setActiveMenu(el);
 
     switch (section) {
-        case "home":
-            content.innerHTML = `
-                <h1>Hi, I'm <span class="highlight">Rasesh Kumar Dash</span></h1>
-                <p class="lead">Java | Spring Boot | Oracle ASAP Developer</p>
+       case "home":
+       content.innerHTML = `
+       <div class="home-hero">
 
-                <div class="card">
-                    <p>
-                        I build enterprise-grade backend systems with a strong focus on
-                        performance, reliability, and clean architecture.
-                    </p>
+         <!-- LEFT CONTENT -->
+         <div class="hero-text">
+           <span class="hero-badge">Backend & Telecom Engineer</span>
 
-                    <p>
-                        Currently working on telecom provisioning systems using
-                        <b>Oracle ASAP</b> and <b>Spring Boot</b>.
-                    </p>
+           <h1>
+             Hi, I'm <span class="highlight">Rasesh Kumar Dash</span>
+           </h1>
 
-                    <div style="margin-top:20px">
-                        <button class="btn" onclick="downloadResume()">📄 Download Resume</button>
-                        <button class="btn" onclick="loadSection('contact', document.querySelector('[data-label=Contact]'))">
-                            Contact Me
-                        </button>
-                    </div>
-                </div>
-            `;
-            break;
+           <p class="hero-subtitle">
+             Java • Spring Boot • Oracle ASAP Developer
+           </p>
+
+           <p class="hero-desc">
+             I design and build <b>enterprise-grade backend systems</b> for
+             telecom provisioning, focusing on performance, reliability,
+             and clean architecture.
+           </p>
+
+           <div class="hero-actions">
+             <button class="btn primary" onclick="downloadResume()">📄 Download Resume</button>
+             <button class="btn" onclick="loadSection('contact', document.querySelector('[data-label=Contact]'))">
+               Contact Me
+             </button>
+           </div>
+         </div>
+
+         <!-- RIGHT STATS -->
+         <div class="hero-stats">
+           <div class="stat-card">
+             <h3>3+</h3>
+             <p>Years Experience</p>
+           </div>
+           <div class="stat-card">
+             <h3>Telecom</h3>
+             <p>Domain Expertise</p>
+           </div>
+           <div class="stat-card">
+             <h3>ASAP</h3>
+             <p>Provisioning Systems</p>
+           </div>
+           <div class="stat-card">
+             <h3>REST</h3>
+             <p>API Integrations</p>
+           </div>
+         </div>
+
+       </div>
+
+       <!-- WHAT I DO -->
+       <div class="home-services">
+
+         <div class="service-card">
+           <i class="bi bi-diagram-3"></i>
+           <h4>Backend Architecture</h4>
+           <p>
+             Designing scalable backend systems using Java & Spring Boot
+             with clean, maintainable architecture.
+           </p>
+         </div>
+
+         <div class="service-card">
+           <i class="bi bi-hdd-network"></i>
+           <h4>Telecom Provisioning</h4>
+           <p>
+             Developing and supporting Oracle ASAP SRT & CRT cartridges
+             for high-volume ISP provisioning.
+           </p>
+         </div>
+
+         <div class="service-card">
+           <i class="bi bi-shield-check"></i>
+           <h4>Production Support</h4>
+           <p>
+             Debugging ASAP logs, FLISTs, and resolving critical
+             production issues under SLA.
+           </p>
+         </div>
+
+       </div>
+
+       <!-- TECH STACK STRIP -->
+       <div class="home-tech">
+         <span>Java</span>
+         <span>Spring Boot</span>
+         <span>Oracle ASAP</span>
+         <span>SRT</span>
+         <span>CRT</span>
+         <span>BRM</span>
+         <span>PL/SQL</span>
+         <span>Git</span>
+         <span>Linux</span>
+       </div>
+       `;
+       break;
 
 
-      case "about":
-          content.innerHTML = `
-              <div class="card-custom about-card">
+     case "about":
+     content.innerHTML = `
+     <div class="about-wrapper">
 
-                  <div class="about-layout">
+       <!-- LEFT: PROFILE CARD -->
+       <div class="about-profile">
+         <img src="assets/profile.png" alt="Rasesh Kumar Dash">
+         <h3>Rasesh Kumar Dash</h3>
+         <p class="role">Java | Spring Boot | Oracle ASAP</p>
 
-                      <!-- PROFILE IMAGE -->
-                      <div class="about-image">
-                          <img src="assets/profile.png" alt="Rasesh Kumar Dash">
-                      </div>
+         <div class="quick-stats">
+           <div>
+             <span>3+</span>
+             <small>Years Experience</small>
+           </div>
+           <div>
+             <span>Telecom</span>
+             <small>Domain</small>
+           </div>
+           <div>
+             <span>Backend</span>
+             <small>Specialist</small>
+           </div>
+         </div>
 
-                      <!-- ABOUT CONTENT -->
-                      <div class="about-content">
-                          <h2>About Me</h2>
+         <button class="btn full" onclick="downloadResume()">📄 Resume</button>
+       </div>
 
-                          <h4 class="highlight">Rasesh Kumar Dash</h4>
-                          <p class="subtitle">Java | Spring Boot | Oracle ASAP Developer</p>
+       <!-- RIGHT: ABOUT DETAILS -->
+       <div class="about-details">
+         <h2>About Me</h2>
 
-                          <p>
-                              I am a <b>Software Enginer</b> with 3+ years of experience in
-                              enterprise telecom systems and backend application development.
-                          </p>
+         <p>
+           I am a <b>Software Engineer</b> with 3+ years of experience building
+           enterprise-grade backend systems in the telecom domain.
+         </p>
 
-                          <p>
-                              Currently, I work extensively on <b>Oracle ASAP</b> provisioning,
-                              building and maintaining SRT & CRT cartridges, and integrating
-                              external systems using REST APIs.
-                          </p>
+         <p>
+           I currently work on <b>Oracle ASAP</b> provisioning systems, developing
+           and supporting SRT & CRT cartridges and integrating BRM and external
+           platforms using REST APIs.
+         </p>
 
-                          <p>
-                              I enjoy solving complex production issues, optimizing performance,
-                              and writing clean, maintainable backend code.
-                          </p>
+         <p>
+           I enjoy debugging production issues, optimizing performance, and writing
+           clean, maintainable backend code.
+         </p>
 
-                          <ul class="about-list">
-                              <li>✔ Java & Spring Boot backend development</li>
-                              <li>✔ Oracle ASAP provisioning (SRT / CRT)</li>
-                              <li>✔ REST API integrations</li>
-                              <li>✔ Production support & optimization</li>
-                          </ul>
+         <!-- SKILLS -->
+         <h3 class="section-title">Core Skills</h3>
 
-                          <div class="about-actions">
-                              <button class="btn" onclick="downloadResume()">📄 Download Resume</button>
-                              <button class="btn" onclick="loadSection('contact',
-                                  document.querySelector('[data-label=Contact]'))">
-                                  Contact Me
-                              </button>
-                          </div>
-                      </div>
+         <div class="skill-grid">
+           <div class="skill-box">
+             <span>Java</span>
+             <div class="bar"><div style="width:90%"></div></div>
+           </div>
 
-                  </div>
+           <div class="skill-box">
+             <span>Spring Boot</span>
+             <div class="bar"><div style="width:85%"></div></div>
+           </div>
 
-              </div>
-               <div class="card-custom">
-                                 <h2>Skills</h2>
+           <div class="skill-box">
+             <span>Oracle ASAP</span>
+             <div class="bar"><div style="width:80%"></div></div>
+           </div>
 
-                                 <div class="skill">
-                                     <div class="skill-header">
-                                         <span class="skill-name">Java</span>
-                                         <span class="skill-percent">90%</span>
-                                     </div>
-                                     <div class="skill-bar">
-                                         <div class="skill-progress" data-progress="90%"></div>
-                                     </div>
-                                 </div>
+           <div class="skill-box">
+             <span>REST APIs</span>
+             <div class="bar"><div style="width:85%"></div></div>
+           </div>
+         </div>
 
-                                 <div class="skill">
-                                     <div class="skill-header">
-                                         <span class="skill-name">Spring Boot</span>
-                                         <span class="skill-percent">85%</span>
-                                     </div>
-                                     <div class="skill-bar">
-                                         <div class="skill-progress" data-progress="85%"></div>
-                                     </div>
-                                 </div>
+         <!-- TECH TAGS -->
+         <h3 class="section-title">Tech Stack</h3>
 
-                                 <div class="skill">
-                                     <div class="skill-header">
-                                         <span class="skill-name">Oracle ASAP</span>
-                                         <span class="skill-percent">80%</span>
-                                     </div>
-                                     <div class="skill-bar">
-                                         <div class="skill-progress" data-progress="80%"></div>
-                                     </div>
-                                 </div>
+         <div class="tag-group">
+           <span>Java</span>
+           <span>Spring Boot</span>
+           <span>Oracle ASAP</span>
+           <span>SRT</span>
+           <span>CRT</span>
+           <span>BRM</span>
+           <span>PL/SQL</span>
+           <span>Git</span>
+           <span>Linux</span>
+         </div>
 
-                                 <div class="skill">
-                                     <div class="skill-header">
-                                         <span class="skill-name">REST APIs</span>
-                                         <span class="skill-percent">85%</span>
-                                     </div>
-                                     <div class="skill-bar">
-                                         <div class="skill-progress" data-progress="85%"></div>
-                                     </div>
-                                 </div>
+         <div class="about-actions">
+           <button class="btn" onclick="loadSection('contact', document.querySelector('[data-label=Contact]'))">
+             Contact Me
+           </button>
+         </div>
+       </div>
 
-                                 <div class="skill">
-                                     <div class="skill-header">
-                                         <span class="skill-name">HTML / CSS / JavaScript</span>
-                                         <span class="skill-percent">75%</span>
-                                     </div>
-                                     <div class="skill-bar">
-                                         <div class="skill-progress" data-progress="75%"></div>
-                                     </div>
-                                 </div>
-                             </div>
-                             <h4>Backend</h4>
-                             Java, Spring Boot, REST APIs
+     </div>
+     `;
 
-                             <h4>Telecom</h4>
-                             Oracle ASAP, SRT, CRT, BRM Integration
 
-                             <h4>Database</h4>
-                             SQL, PL/SQL
-
-                             <h4>Tools</h4>
-                             Git, GitLab, Linux
-          `;
                      animateSkills();
 
           break;
@@ -233,131 +287,130 @@ function loadSection(section, el) {
 
 
 
-       case "experience":
-           content.innerHTML = `
-             <div class="card-custom">
+      case "experience":
+      content.innerHTML = `
+      <div class="timeline-wrapper">
 
-                       <h2>Education</h2>
+        <h2 class="section-heading">Education</h2>
 
-                       <div class="exp-item">
-                           <h4>Master of Computer Applications (MCA)</h4>
-                           <span class="exp-duration">2021 – 2023</span>
-                           <p><b>MPC Autonomous College, Baripada</b></p>
+        <div class="timeline">
 
-                           <ul>
-                               <li>Specialization in Software Development</li>
-                               <li>Strong foundation in Java, Data Structures & Databases</li>
-                               <li>Developed academic projects using Java & SQL</li>
-                           </ul>
-                       </div>
+          <div class="timeline-item">
+            <span class="dot"></span>
+            <div class="timeline-card">
+              <h4>Master of Computer Applications (MCA)</h4>
+              <span class="timeline-date">2021 – 2023</span>
+              <p><b>MPC Autonomous College, Baripada</b></p>
+              <ul>
+                <li>Specialization in Software Development</li>
+                <li>Strong foundation in Java, Data Structures & Databases</li>
+                <li>Built academic projects using Java & SQL</li>
+              </ul>
+            </div>
+          </div>
 
-                       <hr>
+          <div class="timeline-item">
+            <span class="dot"></span>
+            <div class="timeline-card">
+              <h4>Bachelor’s Degree (B.Sc / Equivalent)</h4>
+              <span class="timeline-date">2018 – 2021</span>
+              <p>University Affiliated College</p>
+              <ul>
+                <li>Mathematics & Computer Science background</li>
+                <li>Developed analytical and problem-solving skills</li>
+              </ul>
+            </div>
+          </div>
 
-                       <div class="exp-item">
-                           <h4>Bachelor’s Degree (B.Sc / Equivalent)</h4>
-                           <span class="exp-duration">2018 – 2021</span>
-                           <p>University Affiliated College</p>
+        </div>
 
-                           <ul>
-                               <li>Mathematics & Computer Science background</li>
-                               <li>Built logical problem-solving skills</li>
-                           </ul>
-                       </div>
+        <h2 class="section-heading">Professional Experience</h2>
 
-                   </div>
-               <div class="card-custom">
+        <div class="timeline">
 
-                   <h2>Experience</h2>
+          <div class="timeline-item highlight-item">
+            <span class="dot"></span>
+            <div class="timeline-card">
+              <h4>Software Engineer – Oracle ASAP Developer</h4>
+              <span class="timeline-date">2023 – Present</span>
+              <p>
+                Working in a telecom enterprise environment, building and supporting
+                large-scale provisioning systems.
+              </p>
+              <ul>
+                <li>Designed and enhanced SRT & CRT cartridges for ISP provisioning</li>
+                <li>Integrated BRM and external systems using REST APIs</li>
+                <li>Handled production issues by debugging ASAP logs & FLISTs</li>
+                <li>Optimized provisioning flows to reduce order failures</li>
+              </ul>
 
-                   <div class="exp-item">
-                       <h4>Software Enginer – Oracle ASAP Developer</h4>
-                       <span class="exp-duration">2023 – Present</span>
+              <div class="badge-group">
+                <span>Oracle ASAP</span>
+                <span>Java</span>
+                <span>REST APIs</span>
+                <span>Telecom</span>
+              </div>
+            </div>
+          </div>
 
-                       <p>
-                           Working in a telecom enterprise environment, responsible for
-                           designing, developing, and supporting service provisioning flows
-                           using Oracle ASAP.
-                       </p>
+          <div class="timeline-item">
+            <span class="dot"></span>
+            <div class="timeline-card">
+              <h4>Java Backend Developer (Intern / Project)</h4>
+              <span class="timeline-date">2022 – 2023</span>
+              <p>
+                Worked on backend services using Java and Spring Boot.
+              </p>
+              <ul>
+                <li>Built RESTful APIs using Spring Boot</li>
+                <li>Implemented CRUD operations with SQL & PL/SQL</li>
+                <li>Integrated frontend with backend services</li>
+              </ul>
 
-                       <ul>
-                           <li>Designed and enhanced SRT & CRT cartridges supporting high-volume ISP provisioning, reducing order failures.</li>
-                           <li>Integrated BRM and external systems using REST APIs</li>
-                           <li>Handled production issues, debugging ASAP logs and FLISTs</li>
-                           <li>Optimized provisioning flows to reduce order failures</li>
-                           <li>Collaborated with cross-functional teams for deployments</li>
-                       </ul>
-                   </div>
+              <div class="badge-group">
+                <span>Spring Boot</span>
+                <span>Java</span>
+                <span>SQL</span>
+              </div>
+            </div>
+          </div>
 
-                   <hr>
+        </div>
 
-                   <div class="exp-item">
-                       <h4>Java Backend Developer (Intern / Project)</h4>
-                       <span class="exp-duration">2022 – 2023</span>
+        <h2 class="section-heading">Key Projects</h2>
 
-                       <p>
-                           Worked on backend development using Java and Spring Boot,
-                           focusing on REST API design and database integration.
-                       </p>
+        <div class="project-grid">
 
-                       <ul>
-                           <li>Built RESTful APIs using Spring Boot</li>
-                           <li>Implemented CRUD operations with SQL / PL-SQL</li>
-                           <li>Integrated frontend with backend services</li>
-                           <li>Used Git for version control and collaboration</li>
-                       </ul>
-                   </div>
+          <div class="project-card">
+            <h4>ISP Provisioning System</h4>
+            <p>
+              Enterprise provisioning solution built on Oracle ASAP for
+              automated ISP service activation.
+            </p>
+            <span class="tech">Oracle ASAP · Java · PL/SQL</span>
+          </div>
 
-               </div>
-                <div class="card-custom">
+          <div class="project-card">
+            <h4>Portfolio Website</h4>
+            <p>
+              Single Page Application with modern UI and keyboard navigation.
+            </p>
+            <span class="tech">HTML · CSS · JavaScript</span>
+          </div>
 
-                                   <h2>Projects</h2>
+          <div class="project-card">
+            <h4>Prabhat Makeup Website</h4>
+            <p>
+              Business website with backend gallery management and email alerts.
+            </p>
+            <span class="tech">Spring Boot · REST · JavaScript</span>
+          </div>
 
-                                   <div class="project-item">
-                                       <h4>ISP Provisioning System</h4>
-                                       <p>
-                                           Enterprise provisioning solution built on Oracle ASAP to
-                                           automate ISP service activation and lifecycle management.
-                                       </p>
-                                       <ul>
-                                           <li>Technology: Oracle ASAP, Java, PL-SQL</li>
-                                           <li>Integrated BRM for order and account handling</li>
-                                           <li>Supported high-volume production traffic</li>
-                                       </ul>
-                                   </div>
+        </div>
 
-                                   <hr>
-
-                                   <div class="project-item">
-                                       <h4>Portfolio Website (Single Page Application)</h4>
-                                       <p>
-                                           Personal portfolio website with modern UI and smooth animations,
-                                           built as a JavaScript-driven SPA.
-                                       </p>
-                                       <ul>
-                                           <li>Technology: HTML, CSS, JavaScript</li>
-                                           <li>Dark/Light mode with localStorage</li>
-                                           <li>Dynamic content loading and active menu highlighting</li>
-                                       </ul>
-                                   </div>
-
-                                   <hr>
-
-                                   <div class="project-item">
-                                       <h4>Prabhat Makeup Website</h4>
-                                       <p>
-                                           Business website with backend support for gallery management
-                                           and email notifications.
-                                       </p>
-                                       <ul>
-                                           <li>Technology: Spring Boot, HTML, CSS, JavaScript</li>
-                                           <li>Image upload and email alert functionality</li>
-                                           <li>REST API based backend architecture</li>
-                                       </ul>
-                                   </div>
-
-                               </div>
-           `;
-           break;
+      </div>
+      `;
+      break;
 
 
 
